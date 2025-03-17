@@ -1,17 +1,31 @@
 package com.pearl.PearlBoot;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
 public class User {
     @Id
-    private String id;
+    @GeneratedValue()
+    private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     private String name;
     private String password;
+    @Column(
+            unique = true
+    )
     private String username;
+    @Column(
+            unique = true
+    )
     private String email;
 
     public User() {
@@ -24,13 +38,6 @@ public class User {
         this.email = email;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
